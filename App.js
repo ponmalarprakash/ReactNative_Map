@@ -108,7 +108,8 @@ getLocation(){
         <MapView
           style={styles.map}
           provider={PROVIDER_GOOGLE}
-          region={this.getMapRegion()}>
+          region={this.getMapRegion()}
+          maxZoomLevel={100}>
               <Marker.Animated 
                     ref={marker => {
                           this.marker = marker;
