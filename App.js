@@ -52,6 +52,7 @@ export default class App extends Component {
 
 async componentDidMount() {
 await requestLocationPermission();
+
 Geolocation.watchPosition((position) => {
   var initialRegion = {
    latitude: parseFloat(position.coords.latitude),
@@ -77,14 +78,6 @@ Geolocation.watchPosition((position) => {
         <MapView
          style={styles.map}
          region={this.state.initialPosition}>
-            {/*  <Marker coordinate={this.state.initialPosition}
-                    image={require('./images/car_movement_icon_mdpi.png')}
-                    title="You are here!"
-                    style={{
-                      transform: [{rotate: `${this.state.initialPosition.headingVlaue}deg`}]
-                    }}
-                    tracksViewChanges={true}
-             /> */}
              <Marker coordinate={this.state.initialPosition}
                      title="You are here!"
                      style={{
@@ -109,71 +102,4 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  imageStyle:{
-    width:30,
-    height:30
-  }
 });
-
-
-
-
-
-
-
-
-// /*  async function requestLocationPermission() {
-//         try {
-//           const granted = await PermissionsAndroid.request(
-//               PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-//               {
-//                   title: 'Location Access Required',
-//                   message: 'This App needs to Access your location',
-//                   buttonPositive: "OK"
-//               },
-//           );
-//           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-//             Geolocation.watchPosition((position) => {
-//                 var initialRegion = {
-//                  latitude: parseFloat(position.coords.latitude),
-//                  longitude: parseFloat(position.coords.longitude),
-//                  latitudeDelta: LATITUDE_DELTA,
-//                  longitudeDelta: LONGITUDE_DELTA,
-//                 }
-//                 this.setState({initialPosition: initialRegion})
-//            },
-//            error => {
-//              console.log("error",error);
-//            },
-//            {
-//              enableHighAccuracy: true,
-//              distanceFilter:100,
-//              interval: 15000,
-//              fastestInterval: 10000,
-//            },
-//          );
-//           } else {
-//               console.log('Permission Denied')
-//               BackHandler.exitApp();
-//           }
-//       } catch (err) {
-//           alert('error', err);
-//       }
-//       }
-//       requestLocationPermission();  
-//  */
-
-/* //Current Location 
- Geolocation.getCurrentPosition((position) => {
-     var lat = parseFloat(position.coords.latitude)
-     var lng = parseFloat(position.coords.longitude)
-     var initialRegion = {
-       latitude: lat,
-       longitude: lng,
-       latitudeDelta: LATITUDE_DELTA,
-       longitudeDelta: LONGITUDE_DELTA,
-     }
-     this.setState({initialPosition: initialRegion})
-   },
-   (error) => alert(JSON.stringify(error)),
-   {enableHighAccuracy: true, timeout: 15000, maximumAge: 15000});  */
