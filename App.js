@@ -109,7 +109,8 @@ getLocation(){
           style={styles.map}
           provider={PROVIDER_GOOGLE}
           region={this.getMapRegion()}
-          maxZoomLevel={100}>
+          zoomEnabled={true}
+          >
               <Marker.Animated 
                     ref={marker => {
                           this.marker = marker;
@@ -119,8 +120,10 @@ getLocation(){
                       style={{
                         transform: [{rotate: `${this.state.heading}deg`}]
                     }}
-                    >
-                    <Image source={require("./images/car_movement_icon_ldpi.png")}/>
+              >
+                    <Image  source={require("./images/car_movement_icon_ldpi.png")}
+                            style={{width: 25, height: 25}}
+                            resizeMode="contain"/>
               </Marker.Animated>
        </MapView> 
     </View>
